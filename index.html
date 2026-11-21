@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#a4b9a3">
+    <meta name="description" content="Homie hjælper roomies med at få overblik over hverdagen i et bofællesskab.">
+    <title>Velkommen til Homie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+<main class="app-shell">
+    <section id="welcome-screen" aria-labelledby="welcome-title">
+        <header class="welcome-header">
+            <p class="eyebrow">Velkommen til</p>
+            <h1 id="welcome-title">Homie</h1>
+            <p class="tagline">Et godt hjem starter med et godt fællesskab.</p>
+            <h2>Hvordan vil du starte?</h2>
+        </header>
+        <nav class="start-options" aria-label="Vælg hvordan du vil starte">
+            <button class="start-option start-option--create" type="button" data-destination="create">
+                <span class="start-option__title">Opret et bofællesskab</span>
+                <span class="start-option__description">Start jeres nye hjem sammen</span>
+                <span class="start-option__arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="start-option start-option--join" type="button" data-destination="join">
+                <span class="start-option__title">Tilslut dig til bofællesskabet</span>
+                <span class="start-option__description">Har du en kode fra din roomie?</span>
+                <span class="start-option__arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="start-option start-option--open" type="button" data-destination="home">
+                <span class="start-option__title">Åben bofællesskab</span>
+                <span class="start-option__description">Tjærebyvej 33, 4800 Nyk. F - Lejlighed 4B</span>
+                <span class="start-option__arrow" aria-hidden="true">→</span>
+            </button>
+        </nav>
+    </section>
+
+    <section id="create-screen" class="create-screen" aria-labelledby="create-title" hidden>
+        <button class="back-button" type="button" aria-label="Tilbage til onboarding"><span aria-hidden="true">←</span></button>
+        <header class="create-header">
+            <h1 id="create-title">Opret jeres hjem</h1>
+            <p>Giv jeres bofællesskab en god start.<br>I kan altid ændre oplysningerne senere.</p>
+        </header>
+
+        <form id="create-form" class="create-form">
+            <div class="form-field form-field--name">
+                <label for="community-name">Navn på bofællesskabet</label>
+                <input id="community-name" name="communityName" type="text" placeholder="F.eks. Solsiden"
+                       autocomplete="organization" required>
+                <p class="field-hint">Vælg et navn, som alle roomies kan genkende.</p>
+            </div>
+
+            <div class="form-field form-field--address">
+                <label for="community-address">Adresse</label>
+                <input id="community-address" name="address" type="text" placeholder="By, vejnavn og husnummer"
+                       autocomplete="street-address" required>
+            </div>
+
+            <div class="form-field form-field--email">
+                <label for="community-email">Mail</label>
+                <input id="community-email" name="email" type="email" placeholder="Skriv din mail her"
+                       autocomplete="email" required>
+                <p class="field-hint">Tilføj dine roomies via den kode, der bliver sendt på mail.</p>
+            </div>
+
+            <div class="form-field form-field--roomies">
+                <label for="roomie-count">Hvor mange skal bo sammen?</label>
+                <div class="roomie-counter">
+                    <button class="roomie-counter__decrease" type="button" aria-label="Færre roomies">−</button>
+                    <output id="roomie-count" aria-live="polite">3 roomies</output>
+                    <button class="roomie-counter__increase" type="button" aria-label="Flere roomies">+</button>
+                </div>
+            </div>
+
+            <button class="create-submit" type="submit">Opret <span aria-hidden="true">→</span></button>
+        </form>
+    </section>
+</main>
+</body>
+</html>
