@@ -34,14 +34,15 @@
             </button>
             <button class="start-option start-option--open" type="button" data-destination="home">
                 <span class="start-option__title">Åben bofællesskab</span>
-                <span class="start-option__description">Tjærebyvej 33, 4800 Nyk. F - Lejlighed 4B</span>
+                <span class="start-option__description">Tjærebyvej 33, 4800 Nyk. F - <span class="start-option__community-name">Lejlighed 4B</span></span>
                 <span class="start-option__arrow" aria-hidden="true">→</span>
             </button>
         </nav>
     </section>
 
     <section id="create-screen" class="create-screen" aria-labelledby="create-title" hidden>
-        <button class="back-button" type="button" aria-label="Tilbage til onboarding"><span aria-hidden="true">←</span></button>
+        <button class="back-button" type="button" aria-label="Tilbage til onboarding"><span aria-hidden="true">←</span>
+        </button>
         <header class="create-header">
             <h1 id="create-title">Opret jeres hjem</h1>
             <p>Giv jeres bofællesskab en god start.<br>I kan altid ændre oplysningerne senere.</p>
@@ -79,6 +80,506 @@
 
             <button class="create-submit" type="submit">Opret <span aria-hidden="true">→</span></button>
         </form>
+    </section>
+
+    <section id="join-screen" class="join-screen" aria-labelledby="join-title" hidden>
+        <button class="back-button" type="button" aria-label="Tilbage til onboarding"><span aria-hidden="true">←</span>
+        </button>
+        <header class="join-header">
+            <h1 id="join-title">Tilslut dig fællesskabet</h1>
+            <p>Bliv en del af dit bofællesskab med<br>en invitationskode fra din roomie.</p>
+        </header>
+
+        <form id="join-form" class="join-form">
+            <div class="form-field form-field--invitation">
+                <label for="invitation-code">Invitationskode</label>
+                <input id="invitation-code" name="invitationCode" type="text"
+                       placeholder="F.eks. HOMIE-48217000" autocomplete="off" required>
+            </div>
+
+            <aside class="invitation-help" aria-labelledby="invitation-help-title">
+                <h2 id="invitation-help-title">Hvor finder jeg min kode?</h2>
+                <p>Bed administratoren om at dele invitationskoden med dig. Din roomie kan også finde koden i rediger
+                    fællesskab i deres egen app.</p>
+            </aside>
+
+            <div class="join-actions">
+                <button class="create-submit join-submit" type="submit">Tilslut bofællesskab <span
+                        aria-hidden="true">→</span></button>
+                <p class="join-note">Har du ikke en kode?&nbsp; Spørg din roomie</p>
+            </div>
+        </form>
+    </section>
+
+    <section id="home-screen" class="home-screen" aria-labelledby="home-title" hidden>
+        <div class="home-content">
+            <header class="home-header">
+                <p class="home-eyebrow">Lejlighed 4B</p>
+                <h1 id="home-title">Hej, Maria!</h1>
+                <p>Et godt fællesskab begynder i hverdagen.</p>
+                <button class="edit-community" type="button" data-destination="edit-community">
+                    Rediger fællesskab <img src="assets/edit-arrow.svg" alt="">
+                </button>
+            </header>
+
+            <article class="home-info-card">
+                <h2><img src="assets/chat-icon.svg" alt="">Godmorgen, roomies!</h2>
+                <p>Husk at skrive gæster i kalenderen,<br>så alle kan være forberedte</p>
+            </article>
+
+            <section class="home-agenda" aria-labelledby="agenda-title">
+                <div class="home-section-heading">
+                    <h2 id="agenda-title">I dag</h2>
+                    <span class="home-date">Torsdag 12. nov.</span>
+                </div>
+                <ol class="agenda-card">
+                    <li>
+                        <img src="assets/timeline-dot-yellow.svg" alt="">
+                        <time datetime="17:00">17.00</time>
+                        <span>Fælles aftensmad</span>
+                    </li>
+                    <li>
+                        <img src="assets/timeline-dot-pink.svg" alt="">
+                        <time datetime="19:30">19.30</time>
+                        <span>Emma får besøg</span>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="home-tasks" aria-labelledby="tasks-title">
+                <h2 id="tasks-title">Cinderella-listen</h2>
+                <div class="tasks-card" aria-live="polite"></div>
+            </section>
+        </div>
+
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home" aria-current="page"><span class="home-nav-icon"><img
+                    src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img
+                    src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg"
+                                                                                            alt=""></span><span>Pligter</span>
+            </button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img
+                    src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help"><span class="home-nav-icon"><img src="assets/help-icon.svg"
+                                                                                           alt=""></span><span>Hjælp</span>
+            </button>
+        </nav>
+    </section>
+
+    <section id="community-screen" class="community-screen" aria-labelledby="community-title" hidden>
+        <div class="community-content">
+            <button class="back-button community-back" type="button" aria-label="Tilbage til Home"><span
+                    aria-hidden="true">←</span></button>
+            <header class="community-header">
+                <h1 id="community-title">Rediger fællesskab</h1>
+                <p>Her kan I holde styr på, hvem der bor sammen.</p>
+            </header>
+
+            <section class="community-group community-group--name" aria-labelledby="community-name-title">
+                <h2 id="community-name-title">Jeres fællesskab</h2>
+                <div class="community-card community-name-card">
+                    <label class="community-card-label" for="community-name-input">Navn på fællesskab</label>
+                    <div class="community-name-row">
+                        <strong id="community-display-name">Lejlighed 4B</strong>
+                        <button class="community-edit-button" type="button" data-destination="edit-name"
+                                aria-label="Rediger fællesskabets navn">Rediger
+                        </button>
+                    </div>
+                    <form id="community-name-form" class="community-name-form form-field" hidden>
+                        <input id="community-name-input" name="communityName" type="text" value="Lejlighed 4B"
+                               autocomplete="organization" required>
+                        <div class="community-name-actions">
+                            <button class="community-name-cancel" type="button">Annuller</button>
+                            <button class="community-edit-button" type="submit">Gem</button>
+                        </div>
+                    </form>
+                    <p class="community-card-note" aria-live="polite">Ændringer bliver synlige for alle roomies.</p>
+                </div>
+            </section>
+
+            <section class="community-group community-group--admin" aria-labelledby="administrator-title">
+                <h2 id="administrator-title">Administrator</h2>
+                <div class="community-card administrator-card">
+                    <span class="community-avatar community-avatar--maria" aria-hidden="true">M</span>
+                    <div class="community-person-text"><strong>Maria</strong><span>Oprettede fællesskabet</span></div>
+                    <button class="community-edit-button" type="button" data-destination="edit-maria"
+                            aria-label="Rediger Maria">Rediger
+                    </button>
+                </div>
+            </section>
+
+            <section class="community-group community-group--roomies" aria-labelledby="roomies-title">
+                <h2 id="roomies-title">Roomies</h2>
+                <div class="community-card roomies-card">
+                    <div class="community-roomie-row">
+                        <span class="community-avatar community-avatar--emma" aria-hidden="true">E</span>
+                        <div class="community-person-text"><strong>Emma</strong><span>Roomie</span></div>
+                        <button class="community-edit-button" type="button" data-destination="edit-emma"
+                                aria-label="Rediger Emma">Rediger
+                        </button>
+                    </div>
+                    <div class="community-roomie-row">
+                        <span class="community-avatar community-avatar--lucas" aria-hidden="true">L</span>
+                        <div class="community-person-text"><strong>Lucas</strong><span>Roomie</span></div>
+                        <button class="community-edit-button" type="button" data-destination="edit-lucas"
+                                aria-label="Rediger Lucas">Rediger
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="community-code">
+                <p>Roomiekoden : HOMIE-85492300</p>
+                <small>Tilføj nye Roomies med denne kode.</small>
+            </div>
+        </div>
+
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home" aria-current="page"><span class="home-nav-icon"><img
+                    src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img
+                    src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg"
+                                                                                            alt=""></span><span>Pligter</span>
+            </button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img
+                    src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help"><span class="home-nav-icon"><img src="assets/help-icon.svg"
+                                                                                           alt=""></span><span>Hjælp</span>
+            </button>
+        </nav>
+    </section>
+
+    <section id="roomie-screen" class="roomie-screen" aria-labelledby="roomie-title" hidden>
+        <div class="roomie-content">
+            <button class="back-button roomie-back" type="button" aria-label="Tilbage til Rediger fællesskab"><span
+                    aria-hidden="true">←</span></button>
+            <header class="roomie-header">
+                <h1 id="roomie-title">Rediger roomie</h1>
+                <p>Opdater oplysningerne om en af dine roomies.</p>
+            </header>
+
+            <article class="community-card roomie-profile">
+                <span class="community-avatar community-avatar--lucas" aria-hidden="true">L</span>
+                <div class="community-person-text"><strong>Lucas</strong><span>Roomie - Lejlighed 4B</span></div>
+            </article>
+
+            <form id="roomie-form" class="roomie-form">
+                <div class="form-field roomie-field--name">
+                    <label for="roomie-name">Navn</label>
+                    <input id="roomie-name" name="roomieName" type="text" value="Lucas Hansen" autocomplete="name"
+                           required>
+                </div>
+
+                <div class="form-field roomie-field--email">
+                    <label for="roomie-email">Mail</label>
+                    <input id="roomie-email" name="roomieEmail" type="email" placeholder="Indtast e-mail"
+                           autocomplete="email">
+                    <p class="field-hint">Bruges til invitationer og beskeder i fællesskabet.</p>
+                </div>
+
+                <div class="form-field roomie-field--phone">
+                    <label for="roomie-phone">Telefonnummer</label>
+                    <input id="roomie-phone" name="roomiePhone" type="tel" placeholder="Indtast telefonnummer"
+                           autocomplete="tel">
+                    <p class="field-hint">Bruges til invitationer og beskeder i fællesskabet.</p>
+                </div>
+
+                <button class="roomie-delete" type="button">Slet Roomie</button>
+                <button class="roomie-save" type="submit">Gem ændringer <img src="assets/save-arrow.svg" alt="">
+                </button>
+            </form>
+        </div>
+
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home" aria-current="page"><span class="home-nav-icon"><img
+                    src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img
+                    src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg"
+                                                                                            alt=""></span><span>Pligter</span>
+            </button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img
+                    src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help"><span class="home-nav-icon"><img src="assets/help-icon.svg"
+                                                                                           alt=""></span><span>Hjælp</span>
+            </button>
+        </nav>
+    </section>
+
+    <section id="calendar-screen" class="calendar-screen" aria-labelledby="calendar-title" hidden>
+        <div class="calendar-content">
+            <button class="back-button calendar-back" type="button" aria-label="Tilbage til Home"><span
+                    aria-hidden="true">←</span></button>
+            <header class="calendar-header">
+                <h1 id="calendar-title">Kalender</h1>
+                <p>Gæster, fester og alfaler.</p>
+            </header>
+
+            <section class="calendar-overview" aria-labelledby="calendar-month">
+                <div class="calendar-month-row">
+                    <h2 id="calendar-month" aria-live="polite">November 2026</h2>
+                    <div class="calendar-week-controls">
+                        <button type="button" data-week-shift="-1" aria-label="Forrige uge">‹</button>
+                        <button type="button" data-week-shift="1" aria-label="Næste uge">›</button>
+                    </div>
+                </div>
+                <div class="calendar-week" role="group" aria-label="Vælg dag i ugen 9. til 15. november">
+                    <button type="button" data-date="2026-11-09" aria-pressed="false" aria-label="Mandag 9. november"><span>M</span><strong>9</strong></button>
+                    <button type="button" data-date="2026-11-10" aria-pressed="false" aria-label="Tirsdag 10. november"><span>T</span><strong>10</strong></button>
+                    <button type="button" data-date="2026-11-11" aria-pressed="false" aria-label="Onsdag 11. november"><span>O</span><strong>11</strong></button>
+                    <button type="button" data-date="2026-11-12" aria-pressed="true" aria-label="Torsdag 12. november"><span>T</span><strong>12</strong></button>
+                    <button type="button" data-date="2026-11-13" aria-pressed="false" aria-label="Fredag 13. november"><span>F</span><strong>13</strong></button>
+                    <button type="button" data-date="2026-11-14" aria-pressed="false" aria-label="Lørdag 14. november"><span>L</span><strong>14</strong></button>
+                    <button type="button" data-date="2026-11-15" aria-pressed="false" aria-label="Søndag 15. november"><span>S</span><strong>15</strong></button>
+                </div>
+                <div class="calendar-filters" role="group" aria-label="Filtrer aftaler">
+                    <button type="button" data-category="all" aria-pressed="true">Alle</button>
+                    <button type="button" data-category="guests" aria-pressed="false">Gæster</button>
+                    <button type="button" data-category="shared" aria-pressed="false">Fælles</button>
+                    <button type="button" data-category="other" aria-pressed="false">Andet</button>
+                </div>
+            </section>
+
+            <section class="calendar-schedule" aria-labelledby="calendar-selected-day">
+                <h2 id="calendar-selected-day"><time datetime="2026-11-12">Torsdag 12. november</time></h2>
+                <ol class="calendar-events">
+                    <li class="calendar-event" data-date="2026-11-12" data-time="18:00" data-category="guests">
+                        <span class="calendar-event-dot calendar-event-dot--guests" aria-hidden="true"></span>
+                        <article class="calendar-event-card">
+                            <time datetime="2026-11-12T18:00">18.00</time>
+                            <span class="calendar-event-category calendar-event-category--guests">Gæster</span>
+                            <h3>Emma får besøg</h3>
+                            <p>To venner kommer forbi</p>
+                        </article>
+                    </li>
+                    <li class="calendar-event" data-date="2026-11-12" data-time="20:00" data-category="shared">
+                        <span class="calendar-event-dot calendar-event-dot--shared" aria-hidden="true"></span>
+                        <article class="calendar-event-card">
+                            <time datetime="2026-11-12T20:00">20.00</time>
+                            <span class="calendar-event-category calendar-event-category--shared">Fælles</span>
+                            <h3>Roomie-aften 🍕</h3>
+                            <p>Pizza og film i stuen</p>
+                        </article>
+                    </li>
+                </ol>
+                <p class="calendar-empty" hidden>Ingen aftaler for det valgte filter.</p>
+            </section>
+
+            <button class="calendar-edit roomie-delete" type="button" aria-pressed="false">Slet aftale</button>
+            <button class="calendar-add" type="button" data-destination="create-event">
+                <span>+ Tilføj en aftale</span><img src="assets/edit-arrow.svg" alt="">
+            </button>
+        </div>
+
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img
+                    src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar" aria-current="page"><span class="home-nav-icon"><img
+                    src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg"
+                                                                                            alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img
+                    src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help"><span class="home-nav-icon"><img src="assets/help-icon.svg"
+                                                                                           alt=""></span><span>Hjælp</span></button>
+        </nav>
+    </section>
+
+    <section id="create-event-screen" class="create-event-screen" aria-labelledby="create-event-title" hidden>
+        <div class="create-event-content">
+            <button class="back-button create-event-back" type="button" aria-label="Tilbage til kalender"><span
+                    aria-hidden="true">←</span></button>
+            <header class="create-event-header">
+                <h1 id="create-event-title">Ny aftale</h1>
+                <p>Hold alle roomies opdateret.</p>
+            </header>
+
+            <form id="event-form" class="event-form">
+                <div class="form-field event-field--title">
+                    <label for="event-title">Hvad skal der ske?</label>
+                    <input id="event-title" name="eventTitle" type="text" placeholder="F.eks. Fælles aftensmad"
+                           required>
+                </div>
+
+                <fieldset class="event-categories">
+                    <legend>Kategori</legend>
+                    <div class="event-category-options">
+                        <label><input type="radio" name="eventCategory" value="shared" checked><span>Fælles</span></label>
+                        <label><input type="radio" name="eventCategory" value="guests"><span>Gæster</span></label>
+                        <label><input type="radio" name="eventCategory" value="other"><span>Andet</span></label>
+                    </div>
+                </fieldset>
+
+                <div class="event-date-time">
+                    <div class="event-date-time-field">
+                        <label id="event-date-label" for="event-date-button">Dato</label>
+                        <div class="event-picker event-date-picker">
+                            <input id="event-date" name="eventDate" type="hidden" value="2026-11-12">
+                            <button id="event-date-button" type="button" aria-labelledby="event-date-label event-date-display" aria-expanded="false" aria-controls="event-date-popup"><span id="event-date-display">12. november 2026</span></button>
+                            <div id="event-date-popup" class="date-popup" role="dialog" aria-label="Vælg dato" hidden>
+                                <div class="date-popup-header">
+                                    <button type="button" data-date-month="-1" aria-label="Forrige måned">‹</button>
+                                    <strong id="date-popup-month" aria-live="polite"></strong>
+                                    <button type="button" data-date-month="1" aria-label="Næste måned">›</button>
+                                </div>
+                                <div class="date-popup-weekdays" aria-hidden="true"><span>Ma</span><span>Ti</span><span>On</span><span>To</span><span>Fr</span><span>Lø</span><span>Sø</span></div>
+                                <div class="date-popup-days" role="group" aria-labelledby="date-popup-month"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event-date-time-field">
+                        <label id="event-time-label" for="event-time-button">Tidspunkt</label>
+                        <div class="event-picker event-time-picker">
+                            <input id="event-time" name="eventTime" type="hidden" value="19:00">
+                            <button id="event-time-button" type="button" aria-labelledby="event-time-label event-time-display" aria-expanded="false" aria-controls="event-time-popup"><span id="event-time-display">19.00</span></button>
+                            <div id="event-time-popup" class="time-popup" role="dialog" aria-labelledby="time-popup-title" hidden>
+                                <strong id="time-popup-title">Vælg tidspunkt</strong>
+                                <div class="time-popup-fields">
+                                    <div class="time-wheel-field"><span id="time-hour-label">Timer</span><div id="time-hour" class="time-wheel" role="spinbutton" tabindex="0" aria-labelledby="time-hour-label" aria-valuemin="0" aria-valuemax="23"></div></div>
+                                    <div class="time-wheel-field"><span id="time-minute-label">Minutter</span><div id="time-minute" class="time-wheel" role="spinbutton" tabindex="0" aria-labelledby="time-minute-label" aria-valuemin="0" aria-valuemax="59"></div></div>
+                                </div>
+                                <button class="time-popup-confirm" type="button">Vælg</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-description-field">
+                    <label for="event-description">Beskrivelse (valgfri)</label>
+                    <textarea id="event-description" name="eventDescription"
+                              placeholder="Tilføj en kort besked til dine roomies..."></textarea>
+                </div>
+
+                <label class="event-share">
+                    <span><strong>Del med bofællesskabet</strong><small>Deling kræver en backend.</small></span>
+                    <input id="event-share" name="eventShare" type="checkbox" checked>
+                </label>
+
+                <button class="event-save" type="submit"><span>+ Gem aftale</span><img src="assets/save-arrow.svg"
+                                                                                      alt=""></button>
+            </form>
+        </div>
+
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img
+                    src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar" aria-current="page"><span class="home-nav-icon"><img
+                    src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg"
+                                                                                            alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img
+                    src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help"><span class="home-nav-icon"><img src="assets/help-icon.svg"
+                                                                                           alt=""></span><span>Hjælp</span></button>
+        </nav>
+    </section>
+    <section id="tasks-screen" class="tasks-screen" aria-labelledby="tasks-screen-title" hidden>
+        <div class="tasks-content">
+            <button class="back-button tasks-back" type="button" aria-label="Tilbage til Home"><span aria-hidden="true">←</span></button>
+            <header class="tasks-header"><h1 id="tasks-screen-title">Cinderella-listen</h1><p>Fælles ansvar uden dårlig stemning.</p></header>
+            <section class="tasks-progress" aria-labelledby="tasks-progress-title">
+                <h2 id="tasks-progress-title">Ugens indsats</h2>
+                <p id="tasks-progress-text">1 ud af 3 opgaver klaret</p>
+                <progress id="tasks-progress-bar" value="1" max="3" aria-label="Ugens indsats">1 ud af 3</progress>
+            </section>
+            <div class="tasks-filters" role="group" aria-label="Filtrer opgaver">
+                <button type="button" data-task-filter="all" aria-pressed="true">Alle</button>
+                <button type="button" data-task-filter="mine" aria-pressed="false">Mine</button>
+                <button type="button" data-task-filter="done" aria-pressed="false">Udførte</button>
+            </div>
+            <div class="task-groups">
+                <section class="task-group" aria-labelledby="task-bath-title">
+                    <h2 id="task-bath-title">Bad</h2>
+                    <article class="task-list-card" data-owner="emma" data-initial-done="false">
+                        <input id="task-shower" type="checkbox" aria-label="Marker Afkalk brusenichen som udført">
+                        <div class="task-list-text"><h3>Afkalk brusenichen</h3><p data-task-owner="Emma" data-task-due="Søndag">Emma · Søndag</p></div>
+                        <button type="button" class="task-details" aria-label="Se detaljer for Afkalk brusenichen"><img src="assets/edit-arrow.svg" alt=""></button>
+                    </article>
+                </section>
+                <section class="task-group" aria-labelledby="task-kitchen-title">
+                    <h2 id="task-kitchen-title">Køkken</h2>
+                    <article class="task-list-card" data-owner="lucas" data-deadline="2026-11-12" data-initial-done="false">
+                        <input id="task-trash" type="checkbox" aria-label="Marker Tøm skraldet som udført">
+                        <div class="task-list-text"><h3>Tøm skraldet</h3><p data-task-owner="Lucas" data-task-due="I dag">Lucas · I dag</p></div>
+                        <button type="button" class="task-details" aria-label="Se detaljer for Tøm skraldet"><img src="assets/edit-arrow.svg" alt=""></button>
+                    </article>
+                    <article class="task-list-card" data-owner="maria" data-deadline="2026-11-12" data-initial-done="true">
+                        <input id="task-counter" type="checkbox" checked aria-label="Marker Tør køkkenbord af som udført">
+                        <div class="task-list-text"><h3>Tør køkkenbord af</h3><p data-task-owner="Maria" data-task-due="I dag">Maria · Udført</p></div>
+                        <button type="button" class="task-details" aria-label="Se detaljer for Tør køkkenbord af"><img src="assets/edit-arrow.svg" alt=""></button>
+                    </article>
+                </section>
+            </div>
+            <p class="tasks-empty" hidden>Ingen opgaver i denne visning.</p>
+            <button class="tasks-delete roomie-delete" type="button" aria-pressed="false">Slet opgave</button>
+            <button class="tasks-add" type="button"><span>+ Tilføj opgave</span><img src="assets/save-arrow.svg" alt=""></button>
+        </div>
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks" aria-current="page"><span class="home-nav-icon"><img src="assets/tasks-icon.svg" alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help"><span class="home-nav-icon"><img src="assets/help-icon.svg" alt=""></span><span>Hjælp</span></button>
+        </nav>
+    </section>
+    <section id="create-task-screen" class="create-task-screen" aria-labelledby="create-task-title" hidden>
+        <div class="create-task-content">
+            <button class="back-button create-task-back" type="button" aria-label="Tilbage til opgavelisten"><span aria-hidden="true">←</span></button>
+            <header class="create-event-header"><h1 id="create-task-title">Ny opgave</h1><p>Gør det nemt at deles om pligterne.</p></header>
+            <form id="task-form">
+                <div class="form-field task-form-title"><label for="task-name">Hvad skal der gøres?</label><input id="task-name" name="taskName" type="text" placeholder="F.eks. Støvsug stugen" required></div>
+                <fieldset class="event-categories task-form-area"><legend>Område</legend>
+                    <div class="event-category-options">
+                        <label><input type="radio" name="taskArea" value="kitchen" checked><span>Køkken</span></label>
+                        <label><input type="radio" name="taskArea" value="bath"><span>Bad</span></label>
+                        <label><input type="radio" name="taskArea" value="other"><span>Andet</span></label>
+                    </div>
+                </fieldset>
+                <div class="form-field task-form-owner"><label for="task-owner">Hvem har opgaven?</label><input id="task-owner" name="taskOwner" type="text" placeholder="Vælg en roomie" required><p class="field-hint">Skriv navnet på den roomie, der skal udføre opgaven.</p></div>
+                <div class="form-field task-form-deadline"><label id="task-deadline-label" for="task-deadline-button">Deadline</label><input id="task-deadline" name="taskDeadline" type="hidden" hidden><div class="event-date-picker task-date-picker"><button id="task-deadline-button" type="button" aria-labelledby="task-deadline-label task-deadline-display" aria-expanded="false" aria-controls="event-date-popup"><span id="task-deadline-display">Vælg en dato</span></button></div></div>
+                <label class="event-share task-repeat"><span><strong>Gentag opgaven</strong><small>Hver uge</small></span><input name="taskRepeatWeekly" type="checkbox" checked></label>
+                <label class="event-share task-repeat task-repeat--monthly"><span><strong>Gentag opgaven</strong><small>Hver måned</small></span><input name="taskRepeatMonthly" type="checkbox"></label>
+                <button class="event-save" type="submit"><span>+ Opret opgave</span><img src="assets/save-arrow.svg" alt=""></button>
+            </form>
+        </div>
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks" aria-current="page"><span class="home-nav-icon"><img src="assets/tasks-icon.svg" alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help"><span class="home-nav-icon"><img src="assets/help-icon.svg" alt=""></span><span>Hjælp</span></button>
+        </nav>
+    </section>
+    <section id="task-detail-screen" class="task-detail-screen" aria-labelledby="task-detail-title" hidden>
+        <div class="task-detail-content">
+            <button class="back-button task-detail-back" type="button" aria-label="Tilbage til opgavelisten"><span aria-hidden="true">←</span></button>
+            <header class="task-detail-header"><h1 id="task-detail-title">Afkalk brusenichen</h1><p>Et rent bad er et fælles ansvar.</p></header>
+            <section class="task-detail-owner" aria-labelledby="task-detail-owner-title">
+                <h2 id="task-detail-owner-title">Ansvarlig</h2>
+                <div class="community-card task-detail-owner-card">
+                    <span class="community-avatar community-avatar--emma" aria-hidden="true">E</span>
+                    <div class="community-person-text"><strong id="task-detail-person">Emma</strong><span id="task-detail-due">Søndag</span></div>
+                </div>
+            </section>
+            <section class="task-detail-steps" aria-labelledby="task-detail-steps-title">
+                <h2 id="task-detail-steps-title">Sådan gør du</h2>
+                <ol class="community-card task-detail-steps-card">
+                    <li>Spray afkalker på fliserne</li><li>Lad det virke som anvist</li><li>Skyl grundigt og tør efter</li>
+                </ol>
+            </section>
+            <button class="task-detail-video" type="button"><span><strong>Se video: Afkalk badet</strong><small>voksen-ish videobog</small></span><img src="assets/save-arrow.svg" alt=""></button>
+            <button class="task-detail-complete event-save" type="button"><span>Markér som udført</span><img src="assets/save-arrow.svg" alt=""></button>
+        </div>
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks" aria-current="page"><span class="home-nav-icon"><img src="assets/tasks-icon.svg" alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help"><span class="home-nav-icon"><img src="assets/help-icon.svg" alt=""></span><span>Hjælp</span></button>
+        </nav>
     </section>
 </main>
 </body>
