@@ -581,6 +581,107 @@
             <button type="button" data-destination="help"><span class="home-nav-icon"><img src="assets/help-icon.svg" alt=""></span><span>Hjælp</span></button>
         </nav>
     </section>
+    <section id="shopping-screen" class="shopping-screen" aria-labelledby="shopping-title" hidden>
+        <div class="shopping-content">
+            <button class="back-button shopping-back" type="button" aria-label="Tilbage til Home"><span aria-hidden="true">←</span></button>
+            <header class="shopping-header"><h1 id="shopping-title">Indkøbsliste</h1><p>Det vi mangler – samlet ét sted.</p></header>
+            <section class="shopping-overview" aria-labelledby="shopping-overview-title"><h2 id="shopping-overview-title">Overblik</h2><p id="shopping-count" aria-live="polite">3 varer mangler · 2 købt</p></section>
+            <section class="shopping-group" aria-labelledby="shopping-needed-title"><h2 id="shopping-needed-title">Mangler</h2><ul id="shopping-needed" class="shopping-items"></ul><p id="shopping-needed-empty" class="shopping-empty" hidden>Ingen varer mangler.</p></section>
+            <section class="shopping-group" aria-labelledby="shopping-bought-title"><h2 id="shopping-bought-title">Købt denne måned</h2><ul id="shopping-bought" class="shopping-items"></ul><p id="shopping-bought-empty" class="shopping-empty" hidden>Ingen købte varer.</p></section>
+            <button class="shopping-delete roomie-delete" type="button" aria-pressed="false">Slet vare</button>
+            <button class="shopping-add event-save" type="button"><span>+ Tilføj en vare</span><img src="assets/save-arrow.svg" alt=""></button>
+        </div>
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg" alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping" aria-current="page"><span class="home-nav-icon"><img src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help"><span class="home-nav-icon"><img src="assets/help-icon.svg" alt=""></span><span>Hjælp</span></button>
+        </nav>
+    </section>
+    <section id="create-shopping-screen" class="create-shopping-screen" aria-labelledby="create-shopping-title" hidden>
+        <div class="create-shopping-content">
+            <button class="back-button create-shopping-back" type="button" aria-label="Tilbage til indkøbslisten"><span aria-hidden="true">←</span></button>
+            <header class="create-event-header"><h1 id="create-shopping-title">Ny vare</h1><p>Hvad mangler der i fællesskabet.</p></header>
+            <form id="shopping-form" class="create-shopping-form">
+                <div class="form-field shopping-form-name"><label for="shopping-item-name">Tilføj ny vare</label><input id="shopping-item-name" name="itemName" type="text" placeholder="F.eks. Mælk, køkkenrulle..." required></div>
+                <div class="form-field shopping-form-price"><label for="shopping-item-price">Hvad koster varen?</label><input id="shopping-item-price" name="itemPrice" type="text" inputmode="decimal" placeholder="F.eks. 25kr." required></div>
+                <div class="form-field shopping-form-person"><label for="shopping-item-person">Hvem tilføjer varen?</label><input id="shopping-item-person" name="itemPerson" type="text" placeholder="Vælg en roomie" required><p class="field-hint">Skriv navnet på den roomie, der tilføjer varen til indkøbslisten.</p></div>
+                <button class="event-save" type="submit"><span>+ Tilføj vare</span><img src="assets/save-arrow.svg" alt=""></button>
+            </form>
+        </div>
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg" alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping" aria-current="page"><span class="home-nav-icon"><img src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help"><span class="home-nav-icon"><img src="assets/help-icon.svg" alt=""></span><span>Hjælp</span></button>
+        </nav>
+    </section>
+    <section id="guides-screen" class="guides-screen" aria-labelledby="guides-title" hidden>
+        <div class="guides-content">
+            <button class="back-button guides-back" type="button" aria-label="Tilbage til Home"><span aria-hidden="true">←</span></button>
+            <header class="guides-header"><h1 id="guides-title">Voksen-ish videobog</h1><p>Små videoer til store voksen-spørgsmål.</p></header>
+            <button class="guides-chat event-save" type="button"><span>Din personlige HOMIE</span><img src="assets/save-arrow.svg" alt=""></button>
+            <div class="guides-search"><img src="assets/guide-search.svg" alt=""><label class="visually-hidden" for="guides-search-input">Søg efter en video-guide</label><input id="guides-search-input" type="search" placeholder="Søg efter en video-guide..."></div>
+            <div class="guides-list">
+                <button class="guide-card" type="button"><span class="guide-thumbnail guide-thumbnail--green"><span class="guide-play"><img src="assets/guide-play-circle.svg" alt=""><img src="assets/guide-play.svg" alt=""></span></span><span class="guide-text"><strong>Afkalk badet</strong><small>VIDEO · 02:15</small></span><img class="guide-arrow" src="assets/guide-arrow.svg" alt=""></button>
+                <button class="guide-card" type="button"><span class="guide-thumbnail guide-thumbnail--pink"><span class="guide-play"><img src="assets/guide-play-circle.svg" alt=""><img src="assets/guide-play.svg" alt=""></span></span><span class="guide-text"><strong>5 gode råd til at handle</strong><small>VIDEO · 03:10</small></span><img class="guide-arrow" src="assets/guide-arrow.svg" alt=""></button>
+                <button class="guide-card" type="button"><span class="guide-thumbnail guide-thumbnail--yellow"><span class="guide-play"><img src="assets/guide-play-circle.svg" alt=""><img src="assets/guide-play.svg" alt=""></span></span><span class="guide-text"><strong>Gode tips til opvaskeren</strong><small>VIDEO · 01:45</small></span><img class="guide-arrow" src="assets/guide-arrow.svg" alt=""></button>
+                <button class="guide-card" type="button"><span class="guide-thumbnail guide-thumbnail--blue"><span class="guide-play"><img src="assets/guide-play-circle.svg" alt=""><img src="assets/guide-play.svg" alt=""></span></span><span class="guide-text"><strong>Korrekt skraldesortering</strong><small>VIDEO · 02:30</small></span><img class="guide-arrow" src="assets/guide-arrow.svg" alt=""></button>
+                <button class="guide-card" type="button"><span class="guide-thumbnail guide-thumbnail--green"><span class="guide-play"><img src="assets/guide-play-circle.svg" alt=""><img src="assets/guide-play.svg" alt=""></span></span><span class="guide-text"><strong>Hjælp til at vaske tøj</strong><small>VIDEO · 03:20</small></span><img class="guide-arrow" src="assets/guide-arrow.svg" alt=""></button>
+                <button class="guide-card" type="button"><span class="guide-thumbnail guide-thumbnail--pink"><span class="guide-play"><img src="assets/guide-play-circle.svg" alt=""><img src="assets/guide-play.svg" alt=""></span></span><span class="guide-text"><strong>Sådan rengør du ovnen</strong><small>VIDEO · 02:40</small></span><img class="guide-arrow" src="assets/guide-arrow.svg" alt=""></button>
+                <button class="guide-card" type="button"><span class="guide-thumbnail guide-thumbnail--yellow"><span class="guide-play"><img src="assets/guide-play-circle.svg" alt=""><img src="assets/guide-play.svg" alt=""></span></span><span class="guide-text"><strong>3 råd til god kommunikation</strong><small>VIDEO · 03:00</small></span><img class="guide-arrow" src="assets/guide-arrow.svg" alt=""></button>
+            </div>
+            <p class="guides-empty" hidden>Ingen guider matcher din søgning.</p>
+        </div>
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg" alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help" aria-current="page"><span class="home-nav-icon"><img src="assets/help-icon.svg" alt=""></span><span>Hjælp</span></button>
+        </nav>
+    </section>
+    <section id="video-player-screen" class="video-player-screen" aria-labelledby="video-player-title" hidden>
+        <div class="video-player-content">
+            <button class="back-button video-player-back" type="button" aria-label="Tilbage til videoguides"><span aria-hidden="true">←</span></button>
+            <header class="video-player-header"><h1 id="video-player-title">Afkalk badet</h1><p>En nem guide til en ren bruseniche.</p></header>
+            <div class="video-player-preview">
+                <button class="video-player-play" type="button" aria-label="Afspil Afkalk badet">▶</button>
+                <span>VIDEO · 02:15</span>
+            </div>
+            <section class="video-supplies" aria-labelledby="video-supplies-title">
+                <h2 id="video-supplies-title">Dette skal du bruge</h2>
+                <ul>
+                    <li><span class="video-supply-dot" aria-hidden="true"></span>Kalkfjerner eller eddike</li>
+                    <li><span class="video-supply-dot" aria-hidden="true"></span>Svamp eller blød børste</li>
+                    <li><span class="video-supply-dot" aria-hidden="true"></span>Vand og en tør klud</li>
+                </ul>
+            </section>
+            <section class="video-supplies video-advice" aria-labelledby="video-advice-title" hidden>
+                <h2 id="video-advice-title">De 5 råd</h2>
+                <ul>
+                    <li><span class="video-supply-dot" aria-hidden="true"></span>Tjek køleskabet og lav indkøbsliste hjemmefra.</li>
+                    <li><span class="video-supply-dot" aria-hidden="true"></span>Spis inden du tager ud og handler.</li>
+                    <li><span class="video-supply-dot" aria-hidden="true"></span>Gå efter tilbudene, det kan godt betale sig.</li>
+                    <li><span class="video-supply-dot" aria-hidden="true"></span>Har du fryser, så gå efter de gule priser.</li>
+                    <li><span class="video-supply-dot" aria-hidden="true"></span>Køb stort ind ad gangen.</li>
+                </ul>
+            </section>
+            <section class="task-detail-steps video-player-steps" aria-labelledby="video-steps-title">
+                <h2 id="video-steps-title">Sådan gør du</h2>
+                <ol class="community-card task-detail-steps-card"><li>Spray afkalker på fliserne</li><li>Lad det virke som anvist</li><li>Skyl grundigt og tør efter</li></ol>
+            </section>
+        </div>
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg" alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help" aria-current="page"><span class="home-nav-icon"><img src="assets/help-icon.svg" alt=""></span><span>Hjælp</span></button>
+        </nav>
+    </section>
 </main>
 </body>
 </html>

@@ -4,6 +4,10 @@ const joinScreen = document.querySelector("#join-screen");
 const homeScreen = document.querySelector("#home-screen");
 const calendarScreen = document.querySelector("#calendar-screen");
 const tasksScreen = document.querySelector("#tasks-screen");
+const shoppingScreen = document.querySelector("#shopping-screen");
+const guidesScreen = document.querySelector("#guides-screen");
+const videoPlayerScreen = document.querySelector("#video-player-screen");
+const createShoppingScreen = document.querySelector("#create-shopping-screen");
 const createTaskScreen = document.querySelector("#create-task-screen");
 const taskDetailScreen = document.querySelector("#task-detail-screen");
 const taskForm = document.querySelector("#task-form");
@@ -47,6 +51,65 @@ let enteredFromCommunity = false;
 let currentCommunityName = communityNameDisplay.textContent;
 let communityNameEdited = false;
 let eventFormOpened = false;
+let videoPlayerReturn = "help";
+const videoPlayerGuides = {
+    "video-afkalk": {title: "Afkalk badet", subtitle: "En nem guide til en ren bruseniche.", duration: "02:15", color: "green", supplies: ["Kalkfjerner eller eddike", "Svamp eller blød børste", "Vand og en tør klud"], steps: ["Spray afkalker på fliserne", "Lad det virke som anvist", "Skyl grundigt og tør efter"]},
+    "video-handle": {title: "5 gode råd til at handle", subtitle: "Tips til indkøb.", duration: "03:10", color: "pink", hasDetails: false},
+    "video-opvasker": {
+        title: "Gode tips til opvaskeren", subtitle: "Guide til at holde din opvasker.", duration: "01:45", color: "yellow",
+        supplies: ["Salt til opvasker", "Afspænding", "Opvasketabs"],
+        steps: [
+            "Tøm opvaskeren, hvis den er fyldt.",
+            "Tag den nederste skuffe ud.",
+            "Skru låget af saltbeholderen i bunden af maskinen.",
+            "Hæld salt i hullet, til det er fyldt op.",
+            "Skru låget på igen.",
+            "Åbn afspændingslågen, typisk placeret i opvaskerens låge ved siden af tabsholderen.",
+            "Fyld afspænding på, til den er fyldt.",
+            "Luk afspændingslågen igen.",
+            "Åbn beholderen til tabs og læg en tabs i.",
+            "Tjek filteret i bunden af opvaskemaskinen, og sørg for, at det er rent.",
+            "Sæt nederste skuffe ind igen.",
+            "Start opvaskeren."
+        ]
+    }
+};
+
+function updateVideoPlayer(key) {
+    const guide = videoPlayerGuides[key];
+    const preview = document.querySelector(".video-player-preview");
+    document.querySelector("#video-player-title").textContent = guide.title;
+    const subtitle = document.querySelector(".video-player-header p");
+    subtitle.textContent = guide.subtitle || "";
+    subtitle.hidden = !subtitle.textContent;
+    const supplies = document.querySelector(".video-supplies:not(.video-advice)");
+    supplies.hidden = !guide.supplies;
+    if (guide.supplies) {
+        const items = guide.supplies.map((text) => {
+            const item = document.createElement("li");
+            const dot = document.createElement("span");
+            dot.className = "video-supply-dot";
+            dot.setAttribute("aria-hidden", "true");
+            item.append(dot, document.createTextNode(text));
+            return item;
+        });
+        supplies.querySelector("ul").replaceChildren(...items);
+    }
+    document.querySelector(".video-advice").hidden = key !== "video-handle";
+    const steps = document.querySelector(".video-player-steps");
+    steps.hidden = !guide.steps;
+    if (guide.steps) {
+        steps.querySelector("ol").replaceChildren(...guide.steps.map((text) => {
+            const item = document.createElement("li");
+            item.textContent = text;
+            return item;
+        }));
+    }
+    preview.classList.remove("video-player-preview--green", "video-player-preview--pink", "video-player-preview--yellow");
+    preview.classList.add(`video-player-preview--${guide.color}`);
+    preview.querySelector("span").textContent = `VIDEO · ${guide.duration}`;
+    preview.querySelector("button").setAttribute("aria-label", `Afspil ${guide.title}`);
+}
 
 function setCommunityNameEditorOpen(isOpen) {
     communityNameRow.hidden = isOpen;
@@ -84,6 +147,12 @@ function showScreen() {
     const isHome = window.location.hash === "#home";
     const isCalendar = window.location.hash === "#calendar";
     const isTasks = window.location.hash === "#tasks";
+    const isShopping = window.location.hash === "#shopping";
+    const isGuides = window.location.hash === "#help";
+    const videoKey = window.location.hash.slice(1);
+    const isVideoPlayer = Object.hasOwn(videoPlayerGuides, videoKey);
+    if (isVideoPlayer) updateVideoPlayer(videoKey);
+    const isCreateShopping = window.location.hash === "#create-shopping-item";
     const isCreateTask = window.location.hash === "#create-task";
     const taskDetailKey = window.location.hash.replace(/^#task-detail-/, "");
     const isTaskDetail = window.location.hash.startsWith("#task-detail-") && Object.hasOwn(taskDetailContent, taskDetailKey) && !!document.getElementById(taskDetailContent[taskDetailKey].inputId);
@@ -94,24 +163,32 @@ function showScreen() {
     const roomie = window.location.hash.slice(6);
     const isRoomie = window.location.hash.startsWith("#edit-") && Object.hasOwn(roomieProfiles, roomie);
     if (isRoomie) showRoomie(roomie);
-    welcomeScreen.hidden = isCreating || isJoining || isHome || isCalendar || isTasks || isCreateTask || isTaskDetail || isCreateEvent || isCommunity || isRoomie;
+    welcomeScreen.hidden = isCreating || isJoining || isHome || isCalendar || isTasks || isShopping || isGuides || isVideoPlayer || isCreateShopping || isCreateTask || isTaskDetail || isCreateEvent || isCommunity || isRoomie;
     createScreen.hidden = !isCreating;
     joinScreen.hidden = !isJoining;
     homeScreen.hidden = !isHome;
     calendarScreen.hidden = !isCalendar;
     tasksScreen.hidden = !isTasks;
+    shoppingScreen.hidden = !isShopping;
+    guidesScreen.hidden = !isGuides;
+    videoPlayerScreen.hidden = !isVideoPlayer;
+    createShoppingScreen.hidden = !isCreateShopping;
     createTaskScreen.hidden = !isCreateTask;
     taskDetailScreen.hidden = !isTaskDetail;
     createEventScreen.hidden = !isCreateEvent;
     communityScreen.hidden = !isCommunity;
     roomieScreen.hidden = !isRoomie;
-    appShell.classList.toggle("app-shell--home", isHome || isCalendar || isTasks || isCreateTask || isTaskDetail || isCreateEvent || isCommunity || isRoomie);
+    appShell.classList.toggle("app-shell--home", isHome || isCalendar || isTasks || isShopping || isGuides || isVideoPlayer || isCreateShopping || isCreateTask || isTaskDetail || isCreateEvent || isCommunity || isRoomie);
     document.title = isCreating
         ? "Opret jeres hjem · Homie"
         : isJoining ? "Tilslut dig fællesskabet · Homie"
             : isHome ? "Home · Homie"
                 : isCalendar ? "Kalender · Homie"
                 : isTasks ? "Cinderella-listen · Homie"
+                : isShopping ? "Indkøbsliste · Homie"
+                : isGuides ? "Voksen-ish videobog · Homie"
+                : isVideoPlayer ? `${videoPlayerGuides[videoKey].title} · Homie`
+                : isCreateShopping ? "Ny vare · Homie"
                 : isCreateTask ? "Ny opgave · Homie"
                 : isTaskDetail ? `${document.querySelector("#task-detail-title").textContent} · Homie`
                 : isCreateEvent ? "Ny aftale · Homie"
@@ -127,7 +204,7 @@ document.querySelectorAll("[data-destination]").forEach((button) => {
             return;
         }
 
-        if (["calendar", "tasks"].includes(button.dataset.destination)) {
+        if (["calendar", "tasks", "shopping", "help"].includes(button.dataset.destination)) {
             window.location.hash = button.dataset.destination;
             return;
         }
@@ -288,7 +365,13 @@ document.querySelector(".task-detail-complete").addEventListener("click", () => 
     window.location.hash = "tasks";
 });
 document.querySelector(".task-detail-video").addEventListener("click", () => {
-    window.alert("Videoguiden er endnu ikke implementeret.");
+    if (window.location.hash === "#task-detail-shower") {
+        videoPlayerReturn = "task-detail-shower";
+        document.querySelector(".video-player-back").setAttribute("aria-label", "Tilbage til opgavedetaljer");
+        window.location.hash = "video-afkalk";
+    } else {
+        window.alert("Videoafspilleren for denne guide er endnu ikke implementeret.");
+    }
 });
 document.querySelector(".tasks-add").addEventListener("click", () => {
     window.location.hash = "create-task";
@@ -782,7 +865,7 @@ document.querySelectorAll(".back-button").forEach((button) => {
             return;
         }
 
-        if (button.classList.contains("calendar-back") || button.classList.contains("tasks-back")) {
+        if (button.classList.contains("calendar-back") || button.classList.contains("tasks-back") || button.classList.contains("shopping-back") || button.classList.contains("guides-back")) {
             window.location.hash = "home";
             return;
         }
@@ -794,6 +877,16 @@ document.querySelectorAll(".back-button").forEach((button) => {
 
         if (button.classList.contains("create-task-back") || button.classList.contains("task-detail-back")) {
             window.location.hash = "tasks";
+            return;
+        }
+
+        if (button.classList.contains("create-shopping-back")) {
+            window.location.hash = "shopping";
+            return;
+        }
+
+        if (button.classList.contains("video-player-back")) {
+            window.location.hash = videoPlayerReturn;
             return;
         }
 
@@ -874,6 +967,136 @@ roomieForm.addEventListener("input", () => {
 
 document.querySelector(".roomie-delete").addEventListener("click", () => {
     window.alert("Sletning af en roomie kræver en dataforbindelse og er ikke udført.");
+});
+
+const shoppingItems = [
+    {name: "Havergryn", addedBy: "Emma", price: "18 kr.", bought: false},
+    {name: "Pasta", addedBy: "Lucas", price: "12 kr.", bought: false},
+    {name: "Opvaskemiddel", addedBy: "Maria", price: "25 kr.", bought: false},
+    {name: "Toiletpapir", addedBy: "Emma", price: "20 kr.", bought: true},
+    {name: "Køkkenrulle", addedBy: "Emma", price: "20 kr.", bought: true}
+];
+const shoppingDeleteButton = document.querySelector(".shopping-delete");
+function renderShoppingList(focusIndex = null) {
+    const needed = document.querySelector("#shopping-needed");
+    const bought = document.querySelector("#shopping-bought");
+    needed.replaceChildren();
+    bought.replaceChildren();
+    let neededCount = 0;
+    shoppingItems.forEach((item, index) => {
+        if (!item.bought) neededCount += 1;
+        const row = document.createElement("li");
+        row.className = `shopping-item${item.bought ? " shopping-item--bought" : ""}`;
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `shopping-item-${index}`;
+        checkbox.checked = item.bought;
+        checkbox.addEventListener("change", () => { item.bought = checkbox.checked; renderShoppingList(index); });
+        const content = document.createElement("div");
+        content.className = "shopping-item-text";
+        const label = document.createElement("label");
+        label.htmlFor = checkbox.id;
+        label.textContent = item.name;
+        content.append(label);
+        if (!item.bought && item.addedBy) {
+            const added = document.createElement("small");
+            added.textContent = `Tilføjet af ${item.addedBy}`;
+            content.append(added);
+        }
+        row.append(checkbox, content);
+        if (item.bought && item.buyer) {
+            const buyer = document.createElement("span");
+            buyer.className = `shopping-buyer${item.buyer === "Maria" ? " shopping-buyer--maria" : ""}`;
+            buyer.textContent = item.buyer;
+            row.append(buyer);
+        }
+        if (item.price) {
+            const price = document.createElement("span");
+            price.className = "shopping-price";
+            price.textContent = item.price;
+            row.append(price);
+        }
+        if (shoppingDeleteButton.getAttribute("aria-pressed") === "true") {
+            const remove = document.createElement("button");
+            remove.type = "button";
+            remove.className = "shopping-item-delete";
+            remove.textContent = "Slet vare";
+            remove.setAttribute("aria-label", `Slet ${item.name}`);
+            remove.addEventListener("click", () => {
+                shoppingItems.splice(index, 1);
+                renderShoppingList();
+                shoppingDeleteButton.focus();
+            });
+            row.append(remove);
+        }
+        (item.bought ? bought : needed).append(row);
+    });
+    document.querySelector("#shopping-count").textContent = `${neededCount} ${neededCount === 1 ? "vare mangler" : "varer mangler"} · ${shoppingItems.length - neededCount} købt`;
+    document.querySelector("#shopping-needed-empty").hidden = neededCount !== 0;
+    document.querySelector("#shopping-bought-empty").hidden = neededCount !== shoppingItems.length;
+    if (focusIndex !== null) document.getElementById(`shopping-item-${focusIndex}`)?.focus();
+}
+shoppingDeleteButton.addEventListener("click", () => {
+    const editing = shoppingDeleteButton.getAttribute("aria-pressed") !== "true";
+    shoppingDeleteButton.setAttribute("aria-pressed", String(editing));
+    shoppingDeleteButton.textContent = editing ? "Færdig" : "Slet vare";
+    renderShoppingList();
+});
+document.querySelector(".shopping-add").addEventListener("click", () => {
+    window.location.hash = "create-shopping-item";
+});
+const shoppingForm = document.querySelector("#shopping-form");
+shoppingForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const nameField = shoppingForm.elements.itemName;
+    const priceField = shoppingForm.elements.itemPrice;
+    const personField = shoppingForm.elements.itemPerson;
+    const name = nameField.value.trim();
+    const person = personField.value.trim();
+    const priceText = priceField.value.trim().replace(/\s*kr\.?$/i, "").trim();
+    if (!name || !person) {
+        const field = !name ? nameField : personField;
+        field.setCustomValidity(!name ? "Indtast en vare." : "Indtast navnet på en roomie.");
+        field.reportValidity();
+        return;
+    }
+    if (!/^\d+(?:[,.]\d{1,2})?$/.test(priceText)) {
+        priceField.setCustomValidity("Indtast en gyldig pris, f.eks. 25 eller 25,50.");
+        priceField.reportValidity();
+        return;
+    }
+    const price = `${priceText.replace(".", ",")} kr.`;
+    shoppingItems.push({name, addedBy: person, price, bought: false});
+    shoppingForm.reset();
+    renderShoppingList();
+    window.location.hash = "shopping";
+});
+for (const field of [shoppingForm.elements.itemName, shoppingForm.elements.itemPrice, shoppingForm.elements.itemPerson]) {
+    field.addEventListener("input", () => field.setCustomValidity(""));
+}
+renderShoppingList();
+
+const guideCards = [...document.querySelectorAll(".guide-card")];
+document.querySelector("#guides-search-input").addEventListener("input", (event) => {
+    const query = event.target.value.trim().toLocaleLowerCase("da-DK");
+    guideCards.forEach((card) => { card.hidden = !card.querySelector("strong").textContent.toLocaleLowerCase("da-DK").includes(query); });
+    document.querySelector(".guides-empty").hidden = guideCards.some((card) => !card.hidden);
+});
+guideCards.forEach((card, index) => card.addEventListener("click", () => {
+    const routes = ["video-afkalk", "video-handle", "video-opvasker"];
+    if (routes[index]) {
+        videoPlayerReturn = "help";
+        document.querySelector(".video-player-back").setAttribute("aria-label", "Tilbage til videoguides");
+        window.location.hash = routes[index];
+    } else {
+        window.alert("Videoafspilleren for denne guide er endnu ikke implementeret, og der er ikke tilføjet en videokilde.");
+    }
+}));
+document.querySelector(".video-player-play").addEventListener("click", () => {
+    window.alert("Der er endnu ikke tilføjet en videofil eller et videolink til denne guide.");
+});
+document.querySelector(".guides-chat").addEventListener("click", () => {
+    window.alert("Homie AI-siden er endnu ikke implementeret.");
 });
 
 window.addEventListener("hashchange", showScreen);
