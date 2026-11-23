@@ -6,6 +6,9 @@ const calendarScreen = document.querySelector("#calendar-screen");
 const tasksScreen = document.querySelector("#tasks-screen");
 const shoppingScreen = document.querySelector("#shopping-screen");
 const guidesScreen = document.querySelector("#guides-screen");
+const chatScreen = document.querySelector("#chat-screen");
+const activeChatScreen = document.querySelector("#active-chat-screen");
+const historyScreen = document.querySelector("#history-screen");
 const videoPlayerScreen = document.querySelector("#video-player-screen");
 const createShoppingScreen = document.querySelector("#create-shopping-screen");
 const createTaskScreen = document.querySelector("#create-task-screen");
@@ -52,6 +55,36 @@ let currentCommunityName = communityNameDisplay.textContent;
 let communityNameEdited = false;
 let eventFormOpened = false;
 let videoPlayerReturn = "help";
+const originalChatMessages = document.querySelector(".active-chat-messages").cloneNode(true);
+const historyConversations = [
+    null,
+    { day: "I GÅR", question: "Hvordan laver vi en billig indkøbsliste til ugen?", answer: "Start med at tjekke, hvad I allerede har. Planlæg ugens måltider sammen, og skriv kun de varer på listen, I mangler.", extra: "Kig efter tilbud, og vælg gerne varer, der kan bruges til flere måltider.", followUp: ["Hvilke retter kan vi lave billigt sammen?", "Prøv for eksempel pastaretter, suppe eller en gryderet med bønner og grøntsager. Resterne kan bruges til frokost dagen efter."] },
+    { day: "12. NOV.", question: "Hvordan kan vi dele regninger og fællesudgifter?", answer: "Lav et fælles overblik over husleje, el og andre udgifter, og aftal hvordan I vil fordele dem.", extra: "Skriv aftalen ned, og gennemgå den sammen, hvis jeres behov ændrer sig.", followUp: ["Hvordan holder vi styr på, hvem der har betalt?", "I kan skrive udgifterne og betalingerne i en fælles oversigt. Aftal også en fast dag, hvor I gennemgår den sammen.", "God idé, så tager vi det op på næste fællesmøde.", "Det lyder som en god plan. Så kan alle være med til at aftale, hvad der fungerer bedst for jer."] },
+    { day: "7. NOV.", question: "Hvad kan vi købe sammen for at spare penge på mad?", answer: "I kan begynde med fælles basisvarer som ris, pasta, havregryn og grøntsager.", extra: "Planlæg et par fælles måltider, og sammenlign priser, før I handler." }
+];
+
+function updateActiveChat(index) {
+    const container = document.querySelector(".active-chat-messages");
+    container.replaceChildren(...Array.from(originalChatMessages.cloneNode(true).children));
+    const conversation = historyConversations[index];
+    document.querySelector(".active-chat-day").textContent = conversation ? conversation.day : "I DAG";
+    if (!conversation) return;
+    container.querySelector(".active-chat-bubble--user p").textContent = conversation.question;
+    const paragraphs = container.querySelectorAll(".active-chat-bubble--homie p");
+    paragraphs[0].textContent = conversation.answer;
+    paragraphs[1].textContent = conversation.extra;
+    (conversation.followUp || []).forEach((message, index) => {
+        const isUser = index % 2 === 0;
+        const bubble = document.createElement("article");
+        bubble.className = `active-chat-bubble active-chat-bubble--${isUser ? "user" : "homie"}`;
+        const author = document.createElement("strong");
+        author.textContent = isUser ? "DIG" : "✦ HOMIE";
+        const text = document.createElement("p");
+        text.textContent = message;
+        bubble.append(author, text);
+        container.append(bubble);
+    });
+}
 const videoPlayerGuides = {
     "video-afkalk": {title: "Afkalk badet", subtitle: "En nem guide til en ren bruseniche.", duration: "02:15", color: "green", supplies: ["Kalkfjerner eller eddike", "Svamp eller blød børste", "Vand og en tør klud"], steps: ["Spray afkalker på fliserne", "Lad det virke som anvist", "Skyl grundigt og tør efter"]},
     "video-handle": {title: "5 gode råd til at handle", subtitle: "Tips til indkøb.", duration: "03:10", color: "pink", hasDetails: false},
@@ -149,6 +182,14 @@ function showScreen() {
     const isTasks = window.location.hash === "#tasks";
     const isShopping = window.location.hash === "#shopping";
     const isGuides = window.location.hash === "#help";
+    const isChat = window.location.hash === "#chat";
+    const chatMatch = window.location.hash.match(/^#active-chat(?:-([0-3]))?$/);
+    const isActiveChat = !!chatMatch;
+    if (isActiveChat) {
+        updateActiveChat(chatMatch[1] === undefined ? 0 : Number(chatMatch[1]));
+        document.querySelector(".active-chat-back").setAttribute("aria-label", chatMatch[1] === undefined ? "Tilbage til chatforsiden" : "Tilbage til tidligere samtaler");
+    }
+    const isHistory = window.location.hash === "#chat-history";
     const videoKey = window.location.hash.slice(1);
     const isVideoPlayer = Object.hasOwn(videoPlayerGuides, videoKey);
     if (isVideoPlayer) updateVideoPlayer(videoKey);
@@ -163,7 +204,7 @@ function showScreen() {
     const roomie = window.location.hash.slice(6);
     const isRoomie = window.location.hash.startsWith("#edit-") && Object.hasOwn(roomieProfiles, roomie);
     if (isRoomie) showRoomie(roomie);
-    welcomeScreen.hidden = isCreating || isJoining || isHome || isCalendar || isTasks || isShopping || isGuides || isVideoPlayer || isCreateShopping || isCreateTask || isTaskDetail || isCreateEvent || isCommunity || isRoomie;
+    welcomeScreen.hidden = isCreating || isJoining || isHome || isCalendar || isTasks || isShopping || isGuides || isChat || isActiveChat || isHistory || isVideoPlayer || isCreateShopping || isCreateTask || isTaskDetail || isCreateEvent || isCommunity || isRoomie;
     createScreen.hidden = !isCreating;
     joinScreen.hidden = !isJoining;
     homeScreen.hidden = !isHome;
@@ -171,6 +212,9 @@ function showScreen() {
     tasksScreen.hidden = !isTasks;
     shoppingScreen.hidden = !isShopping;
     guidesScreen.hidden = !isGuides;
+    chatScreen.hidden = !isChat;
+    activeChatScreen.hidden = !isActiveChat;
+    historyScreen.hidden = !isHistory;
     videoPlayerScreen.hidden = !isVideoPlayer;
     createShoppingScreen.hidden = !isCreateShopping;
     createTaskScreen.hidden = !isCreateTask;
@@ -178,7 +222,7 @@ function showScreen() {
     createEventScreen.hidden = !isCreateEvent;
     communityScreen.hidden = !isCommunity;
     roomieScreen.hidden = !isRoomie;
-    appShell.classList.toggle("app-shell--home", isHome || isCalendar || isTasks || isShopping || isGuides || isVideoPlayer || isCreateShopping || isCreateTask || isTaskDetail || isCreateEvent || isCommunity || isRoomie);
+    appShell.classList.toggle("app-shell--home", isHome || isCalendar || isTasks || isShopping || isGuides || isChat || isActiveChat || isHistory || isVideoPlayer || isCreateShopping || isCreateTask || isTaskDetail || isCreateEvent || isCommunity || isRoomie);
     document.title = isCreating
         ? "Opret jeres hjem · Homie"
         : isJoining ? "Tilslut dig fællesskabet · Homie"
@@ -187,6 +231,9 @@ function showScreen() {
                 : isTasks ? "Cinderella-listen · Homie"
                 : isShopping ? "Indkøbsliste · Homie"
                 : isGuides ? "Voksen-ish videobog · Homie"
+                : isChat ? "Din personlige homie · Homie"
+                : isActiveChat ? "HOMIE · Homie"
+                : isHistory ? "Tidligere samtaler · Homie"
                 : isVideoPlayer ? `${videoPlayerGuides[videoKey].title} · Homie`
                 : isCreateShopping ? "Ny vare · Homie"
                 : isCreateTask ? "Ny opgave · Homie"
@@ -890,6 +937,21 @@ document.querySelectorAll(".back-button").forEach((button) => {
             return;
         }
 
+        if (button.classList.contains("active-chat-back")) {
+            window.location.hash = /^#active-chat-[0-3]$/.test(window.location.hash) ? "chat-history" : "chat";
+            return;
+        }
+
+        if (button.classList.contains("chat-back")) {
+            window.location.hash = "help";
+            return;
+        }
+
+        if (button.classList.contains("history-back")) {
+            window.location.hash = "chat";
+            return;
+        }
+
         if (button.classList.contains("community-back")) {
             if (enteredFromHome) {
                 enteredFromHome = false;
@@ -1096,7 +1158,29 @@ document.querySelector(".video-player-play").addEventListener("click", () => {
     window.alert("Der er endnu ikke tilføjet en videofil eller et videolink til denne guide.");
 });
 document.querySelector(".guides-chat").addEventListener("click", () => {
-    window.alert("Homie AI-siden er endnu ikke implementeret.");
+    window.location.hash = "chat";
+});
+
+const historyCards = [...document.querySelectorAll(".history-card")];
+document.querySelector(".chat-history-link").addEventListener("click", () => {
+    window.location.hash = "chat-history";
+});
+document.querySelector("#history-search").addEventListener("input", (event) => {
+    const query = event.target.value.trim().toLocaleLowerCase("da");
+    historyCards.forEach((card) => { card.hidden = !card.textContent.toLocaleLowerCase("da").includes(query); });
+    document.querySelector(".history-empty").hidden = historyCards.some((card) => !card.hidden);
+});
+historyCards.forEach((button, index) => button.addEventListener("click", () => {
+    window.location.hash = `active-chat-${index}`;
+}));
+document.querySelector(".chat-message-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    document.querySelector("#active-chat-message").value = document.querySelector("#chat-message").value;
+    window.location.hash = "active-chat";
+});
+document.querySelector(".active-chat-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    document.querySelector(".active-chat-feedback").textContent = "AI-chatten er ikke tilsluttet, så beskeden er ikke sendt.";
 });
 
 window.addEventListener("hashchange", showScreen);

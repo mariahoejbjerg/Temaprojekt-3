@@ -132,7 +132,7 @@
                     <h2 id="agenda-title">I dag</h2>
                     <span class="home-date">Torsdag 12. nov.</span>
                 </div>
-                <ol class="agenda-card">
+                <ul class="agenda-card">
                     <li>
                         <img src="assets/timeline-dot-yellow.svg" alt="">
                         <time datetime="17:00">17.00</time>
@@ -143,7 +143,7 @@
                         <time datetime="19:30">19.30</time>
                         <span>Emma får besøg</span>
                     </li>
-                </ol>
+                </ul>
             </section>
 
             <section class="home-tasks" aria-labelledby="tasks-title">
@@ -634,6 +634,85 @@
                 <button class="guide-card" type="button"><span class="guide-thumbnail guide-thumbnail--yellow"><span class="guide-play"><img src="assets/guide-play-circle.svg" alt=""><img src="assets/guide-play.svg" alt=""></span></span><span class="guide-text"><strong>3 råd til god kommunikation</strong><small>VIDEO · 03:00</small></span><img class="guide-arrow" src="assets/guide-arrow.svg" alt=""></button>
             </div>
             <p class="guides-empty" hidden>Ingen guider matcher din søgning.</p>
+        </div>
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg" alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help" aria-current="page"><span class="home-nav-icon"><img src="assets/help-icon.svg" alt=""></span><span>Hjælp</span></button>
+        </nav>
+    </section>
+    <section id="chat-screen" class="chat-screen" aria-labelledby="chat-title" hidden>
+        <div class="chat-content">
+            <button class="back-button chat-back" type="button" aria-label="Tilbage til videoguides"><span aria-hidden="true">←</span></button>
+            <header class="chat-header"><h1 id="chat-title">Din personlige homie</h1><p>Spørg om gode råd, rengøring, indkøb mm.</p></header>
+            <section class="chat-intro" aria-labelledby="chat-intro-title">
+                <h2 id="chat-intro-title">Hvad fylder hos jer?</h2>
+                <p>Er det rengøringen der driller eller en svær samtale med dine roomies, så kan jeg hjælpe.</p>
+            </section>
+            <section class="chat-topics" aria-labelledby="chat-topics-title">
+                <h2 id="chat-topics-title">HVAD VIL DU TALE OM?</h2>
+                <div class="chat-topic chat-topic--yellow">Rengøring og pligter</div>
+                <div class="chat-topic chat-topic--pink">Økonomi og fællesudgifter</div>
+                <div class="chat-topic chat-topic--green">Grænser og privatliv</div>
+            </section>
+            <button class="chat-topic chat-topic--blue chat-history-link" type="button">Tidligere samtaler<img src="assets/guide-arrow.svg" alt=""></button>
+            <form class="chat-message-form">
+                <label class="visually-hidden" for="chat-message">Skriv en besked</label>
+                <input id="chat-message" placeholder="Skriv en besked..." required>
+                <button type="submit" aria-label="Send besked"><img src="assets/guide-arrow.svg" alt=""></button>
+            </form>
+            <p class="chat-feedback" role="status" hidden></p>
+        </div>
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg" alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help" aria-current="page"><span class="home-nav-icon"><img src="assets/help-icon.svg" alt=""></span><span>Hjælp</span></button>
+        </nav>
+    </section>
+    <section id="active-chat-screen" class="chat-screen" aria-labelledby="active-chat-title" hidden>
+        <div class="chat-content active-chat-content">
+            <button class="back-button active-chat-back" type="button" aria-label="Tilbage til chatforsiden"><span aria-hidden="true">←</span></button>
+            <header class="chat-header"><h1 id="active-chat-title">HOMIE</h1><p>Din personlige hjælper</p></header>
+            <p class="active-chat-day">I DAG</p>
+            <div class="active-chat-messages" aria-live="polite">
+                <article class="active-chat-bubble active-chat-bubble--user"><strong>DIG</strong><p>Hvordan fortæller jeg min roomie, at jeg gerne vil have en bedre fordeling af rengøringen?</p></article>
+                <article class="active-chat-bubble active-chat-bubble--homie"><strong>✦ HOMIE</strong><p>Det kan være svært at tage op, men det hjælper at være konkret og venlig.</p><p>Prøv fx at sige:<br>“Jeg vil gerne have, at vi fordeler rengøringen lidt mere ligeligt. Kan vi lave en plan sammen?”</p></article>
+            </div>
+            <p class="active-chat-feedback" role="status">AI-chatten er ikke tilsluttet endnu.</p>
+            <form class="chat-message-form active-chat-form">
+                <label class="visually-hidden" for="active-chat-message">Skriv ny besked</label>
+                <input id="active-chat-message" placeholder="Skriv ny besked..." required>
+                <button type="submit" aria-label="Send besked">➜</button>
+            </form>
+        </div>
+        <nav class="home-nav" aria-label="Hovednavigation">
+            <button type="button" data-destination="home"><span class="home-nav-icon"><img src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
+            <button type="button" data-destination="calendar"><span class="home-nav-icon"><img src="assets/calendar-icon.svg" alt=""></span><span>Kalender</span></button>
+            <button type="button" data-destination="tasks"><span class="home-nav-icon"><img src="assets/tasks-icon.svg" alt=""></span><span>Pligter</span></button>
+            <button type="button" data-destination="shopping"><span class="home-nav-icon"><img src="assets/shopping-icon.svg" alt=""></span><span>Indkøb</span></button>
+            <button type="button" data-destination="help" aria-current="page"><span class="home-nav-icon"><img src="assets/help-icon.svg" alt=""></span><span>Hjælp</span></button>
+        </nav>
+    </section>
+    <section id="history-screen" class="history-screen" aria-labelledby="history-title" hidden>
+        <div class="history-content">
+            <button class="back-button history-back" type="button" aria-label="Tilbage til chatforsiden"><span aria-hidden="true">←</span></button>
+            <header class="guides-header"><h1 id="history-title">Tidligere samtaler</h1><p>Find svar og fortsæt chat’en med din Homie.</p></header>
+            <div class="guides-search history-search"><img src="assets/guide-search.svg" alt=""><label class="visually-hidden" for="history-search">Søg i samtaler</label><input id="history-search" type="search" placeholder="Søg efter en guide..."></div>
+            <h2 class="history-heading">DINE SAMTALER</h2>
+            <div class="history-list">
+                <button class="history-card" type="button"><span><strong>Rengøringsplan med roomies</strong><small>Hvordan laver vi en fair fordeling?</small><small>I dag</small></span><img src="assets/guide-arrow.svg" alt=""></button>
+                <button class="history-card" type="button"><span><strong>Billig indkøbsliste til ugen</strong><small>Forslag til fælles indkøb</small><small>I går</small></span><img src="assets/guide-arrow.svg" alt=""></button>
+                <button class="history-card" type="button"><span><strong>Fællesudgifter og budget</strong><small>Sådan deler I regninger og udgifter</small><small>12. nov.</small></span><img src="assets/guide-arrow.svg" alt=""></button>
+                <button class="history-card" type="button"><span><strong>Billig indkøbsliste til ugen</strong><small>Forslag til fælles indkøb</small><small>7. nov.</small></span><img src="assets/guide-arrow.svg" alt=""></button>
+
+            </div>
+            <p class="history-empty" hidden>Ingen samtaler matcher din søgning.</p>
+            <p class="history-note">Tryk på en samtale for at læse den igen.</p>
+            <p class="history-feedback" role="status" hidden></p>
         </div>
         <nav class="home-nav" aria-label="Hovednavigation">
             <button type="button" data-destination="home"><span class="home-nav-icon"><img src="assets/home-icon.svg" alt=""></span><span>Hjem</span></button>
