@@ -87,7 +87,7 @@ function updateActiveChat(index) {
 }
 const videoPlayerGuides = {
     "video-afkalk": {title: "Afkalk badet", subtitle: "En nem guide til en ren bruseniche.", duration: "01:12", color: "green", videoUrl: "https://www.youtube-nocookie.com/embed/iljap7FzooI?autoplay=0", supplies: ["Kalkfjerner eller eddike", "Svamp eller blød børste", "Vand og en tør klud"], steps: ["Spray afkalker på fliserne", "Lad det virke som anvist", "Skyl grundigt og tør efter"]},
-    "video-handle": {title: "5 gode råd til at handle", subtitle: "Tips til indkøb.", duration: "02:13", color: "pink", videoUrl: "https://www.youtube-nocookie.com/embed/yImsL1MXcBo?autoplay=0", hasDetails: false},
+    "video-handle": {title: "5 gode råd til at handle", subtitle: "Tips til indkøb.", duration: "02:13", color: "pink", videoUrl: "https://www.youtube.com/embed/5uGzv3wBvxk?autoplay=0", hasDetails: false},
     "video-opvasker": {
         title: "Gode tips til opvaskeren", subtitle: "Guide til at holde din opvasker.", duration: "01:57", color: "yellow", videoUrl: "https://www.youtube-nocookie.com/embed/yF2rZhhk33Y?autoplay=0",
         supplies: ["Salt til opvasker", "Afspænding", "Opvasketabs"],
