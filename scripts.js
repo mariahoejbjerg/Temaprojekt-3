@@ -240,7 +240,7 @@ function showScreen() {
                 : isTaskDetail ? `${document.querySelector("#task-detail-title").textContent} · Homie`
                 : isCreateEvent ? "Ny aftale · Homie"
                 : isCommunity ? "Rediger fællesskab · Homie"
-                    : isRoomie ? "Rediger roomie · Homie" : "Velkommen til Homie";
+                    : isRoomie ? "Rediger roomie · Homie" : "Homie.dk";
 }
 
 document.querySelectorAll("[data-destination]").forEach((button) => {
