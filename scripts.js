@@ -86,10 +86,10 @@ function updateActiveChat(index) {
     });
 }
 const videoPlayerGuides = {
-    "video-afkalk": {title: "Afkalk badet", subtitle: "En nem guide til en ren bruseniche.", duration: "02:15", color: "green", supplies: ["Kalkfjerner eller eddike", "Svamp eller blød børste", "Vand og en tør klud"], steps: ["Spray afkalker på fliserne", "Lad det virke som anvist", "Skyl grundigt og tør efter"]},
-    "video-handle": {title: "5 gode råd til at handle", subtitle: "Tips til indkøb.", duration: "03:10", color: "pink", hasDetails: false},
+    "video-afkalk": {title: "Afkalk badet", subtitle: "En nem guide til en ren bruseniche.", duration: "01:12", color: "green", videoUrl: "https://www.youtube-nocookie.com/embed/iljap7FzooI?autoplay=0", supplies: ["Kalkfjerner eller eddike", "Svamp eller blød børste", "Vand og en tør klud"], steps: ["Spray afkalker på fliserne", "Lad det virke som anvist", "Skyl grundigt og tør efter"]},
+    "video-handle": {title: "5 gode råd til at handle", subtitle: "Tips til indkøb.", duration: "02:13", color: "pink", videoUrl: "https://www.youtube-nocookie.com/embed/yImsL1MXcBo?autoplay=0", hasDetails: false},
     "video-opvasker": {
-        title: "Gode tips til opvaskeren", subtitle: "Guide til at holde din opvasker.", duration: "01:45", color: "yellow",
+        title: "Gode tips til opvaskeren", subtitle: "Guide til at holde din opvasker.", duration: "01:57", color: "yellow", videoUrl: "https://www.youtube-nocookie.com/embed/yF2rZhhk33Y?autoplay=0",
         supplies: ["Salt til opvasker", "Afspænding", "Opvasketabs"],
         steps: [
             "Tøm opvaskeren, hvis den er fyldt.",
@@ -140,8 +140,9 @@ function updateVideoPlayer(key) {
     }
     preview.classList.remove("video-player-preview--green", "video-player-preview--pink", "video-player-preview--yellow");
     preview.classList.add(`video-player-preview--${guide.color}`);
-    preview.querySelector("span").textContent = `VIDEO · ${guide.duration}`;
-    preview.querySelector("button").setAttribute("aria-label", `Afspil ${guide.title}`);
+    const embed = preview.querySelector("iframe");
+    embed.src = guide.videoUrl;
+    embed.title = `Video: ${guide.title}`;
 }
 
 function setCommunityNameEditorOpen(isOpen) {
@@ -1154,9 +1155,6 @@ guideCards.forEach((card, index) => card.addEventListener("click", () => {
         window.alert("Videoafspilleren for denne guide er endnu ikke implementeret, og der er ikke tilføjet en videokilde.");
     }
 }));
-document.querySelector(".video-player-play").addEventListener("click", () => {
-    window.alert("Der er endnu ikke tilføjet en videofil eller et videolink til denne guide.");
-});
 document.querySelector(".guides-chat").addEventListener("click", () => {
     window.location.hash = "chat";
 });
